@@ -12,6 +12,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   margin: 20px 0;
+  list-style: none;
 }
 
 .rocketImg {
