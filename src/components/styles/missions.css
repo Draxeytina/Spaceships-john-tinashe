@@ -1,0 +1,11 @@
+table {
+  width: 78%;
+}
+
+tr:nth-child(even) {
+  background-color: #eee;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}

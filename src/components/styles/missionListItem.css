@@ -1,0 +1,51 @@
+table,
+th,
+td {
+  border: 1px solid lightgrey;
+  border-spacing: 0;
+}
+
+td {
+  padding: 10px;
+}
+
+.statusFalse {
+  border: none;
+  border-radius: 5px;
+  background-color: #6d757d;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 17px;
+}
+
+.statusTrue {
+  border: none;
+  border-radius: 5px;
+  background-color: #18a2b8;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 17px;
+}
+
+.enrolFalse {
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  padding: 6px 12px;
+  font-size: 17px;
+  height: 50px;
+}
+
+.enrolTrue {
+  border: 1px solid red;
+  border-radius: 5px;
+  color: red;
+  padding: 6px 12px;
+  font-size: 17px;
+  height: 50px;
+}
+
+.title {
+  text-align: left;
+  vertical-align: top;
+}
