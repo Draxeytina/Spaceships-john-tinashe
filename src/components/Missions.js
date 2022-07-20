@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import MissionsListItem from './MissionsListItem';
+import { fetchMissions } from '../reduks/missions/missions';
 import './styles/missions.css';
 
 export default function Missions() {
+  const missions = useSelector((state) => state.missions);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMissions());
+  }, []);
+
   return (
     <div className="container">
       <table>
@@ -12,7 +21,12 @@ export default function Missions() {
           <th>Status</th>
           <th> </th>
         </tr>
-        <MissionsListItem />
+        {missions.map((mission) => (
+          <MissionsListItem
+            key={mission.mission_id}
+            mission={mission}
+          />
+        ))}
       </table>
     </div>
   );
