@@ -1,9 +1,19 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { reserveRocket, cancelRocket } from '../reduks/rockets/rockets';
 
 const RocketItem = (props) => {
   const { rocket } = props;
+
+  const dispatch = useDispatch();
+  const handleReserve = () => {
+    dispatch(reserveRocket(rocket.id));
+  };
+
+  const handleCancel = () => {
+    dispatch(cancelRocket(rocket.id));
+  };
 
   return (
     <li className="rocket">
@@ -15,9 +25,20 @@ const RocketItem = (props) => {
           {rocket.rocket_name}
         </h3>
         <p>
+          {rocket.reserved === true && (<div className="reserved">Reserved</div>)}
           {rocket.description}
         </p>
-        <button type="button" className="reserveBtn">Reserve Rocket</button>
+        { rocket.reserved === true
+          ? (
+            <button type="button" className="cancelBtn" onClick={handleCancel}>
+              Cancel Reservation
+            </button>
+          )
+          : (
+            <button type="button" className="reserveBtn" onClick={handleReserve}>
+              Reserve Rocket
+            </button>
+          )}
       </div>
     </li>
   );
