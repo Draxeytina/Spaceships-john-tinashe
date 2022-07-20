@@ -1,17 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import logger from 'redux-logger';
-// import rocketsReducer from './rockets/rockets';
+import rocketsReducer from './rockets/rockets';
 import missionsReducer from './missions/missions';
 
-// const rootReducer = combineReducers({
-//   rockets: rocketsReducer,
-// });
+const rootReducer = combineReducers({
+  rockets: rocketsReducer,
+  missions: missionsReducer,
+});
 
 const store = configureStore({
-  reducer: {
-    missions: missionsReducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
