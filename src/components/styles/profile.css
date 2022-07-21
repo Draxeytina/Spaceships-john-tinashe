@@ -1,0 +1,28 @@
+.profile {
+  width: 73%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 140px;
+}
+
+.profile div {
+  width: 45%;
+}
+
+.profile div table {
+  width: 100%;
+}
+
+.profile h3 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.profile td {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #fff;
+}
