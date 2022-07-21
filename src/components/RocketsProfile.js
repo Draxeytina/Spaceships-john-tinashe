@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 const RocketList = () => {
   const allRockets = useSelector((state) => state.rockets);
-  const rockets = allRockets.filter((rocket) => rocket.reserved !== true);
+  const rockets = allRockets.filter((rocket) => rocket.reserved === true);
 
   return (
     <table>
