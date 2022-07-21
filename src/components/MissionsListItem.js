@@ -1,48 +1,36 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateMission, fetchMissions } from '../reduks/missions/missions';
 import './styles/missionListItem.css';
 
-export default function MissionsListItem(props) {
-  const { mission } = props;
-  const [state, setState] = useState({
-    status: 'NOT A MEMBER',
-    enrol: 'Join Mission',
-  });
+export default function MissionsListItem() {
+  const dispatch = useDispatch();
+  const { missions } = useSelector((state) => state.missions);
+  const missionList = Object.keys(missions);
+  useEffect(() => {
+    dispatch(fetchMissions());
+  }, []);
 
-  const clickedMission = (event) => {
-    event.preventDefault();
-    if (event.target.value === 'Join Mission') {
-      setState({
-        ...state,
-        enrol: 'Leave Mission',
-        status: 'Active Member',
-      });
-    } else {
-      setState({
-        ...state,
-        enrol: 'Join Mission',
-        status: 'NOT A MEMBER',
-      });
-    }
-  };
   return (
-    <tr>
-      <td className="title">
-        <h1>{mission.mission_name}</h1>
-      </td>
-      <td>
-        <p>{mission.description}</p>
-      </td>
-      <td>
-        <button className="statusFalse" type="button" aria-label="Mission Status" value={state.status}>{state.status}</button>
-      </td>
-      <td className={mission.mission_id}>
-        <button onClick={clickedMission} className="enrolFalse" type="button" aria-label="Mission Status" value={state.enrol}>{state.enrol}</button>
-      </td>
-    </tr>
+    missionList.map((mission) => (
+      <tr key={mission}>
+        <td className="title">
+          <h1>{missions[mission].mission_name}</h1>
+        </td>
+        <td>
+          <p>{missions[mission].description}</p>
+        </td>
+        <td>
+          {
+            missions[mission].reserved ? <button className="statusTrue" type="button" aria-label="Mission Status" value="Not a Member">Active Member</button> : <button className="statusFalse" type="button" aria-label="Mission Status" value="Not a Member">Not a Member</button>
+          }
+        </td>
+        <td className={mission.mission_id}>
+          {
+            missions[mission].reserved ? <button onClick={() => dispatch(updateMission(mission))} className="enrolTrue" type="button" aria-label="Mission Status" value="Leave Mission">Leave Mission</button> : <button onClick={() => dispatch(updateMission(mission))} className="enrolFalse" type="button" aria-label="Mission Status" value="Join Mission">Join Mission</button>
+          }
+        </td>
+      </tr>
+    ))
   );
 }
-
-MissionsListItem.propTypes = {
-  mission: PropTypes.instanceOf(Array).isRequired,
-};
