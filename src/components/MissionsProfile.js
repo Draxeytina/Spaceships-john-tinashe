@@ -3,28 +3,17 @@ import { useSelector } from 'react-redux';
 
 const MissionsList = () => {
   const { missions } = useSelector((state) => state.missions);
-  const missionList = Object.keys(missions);
-  const reservedMissions = [];
 
-  if (missionList.length) {
-    missionList.forEach((item) => {
-      if (missions[item].reserved) {
-        reservedMissions.push({
-          id: reservedMissions.length + 1,
-          title: missions[item].mission_name,
-        });
-      }
-    });
-  }
+  const reservedMissions = Object.values(missions).filter((mission) => mission.reserved === true);
 
   return (
     <table>
       {
-        reservedMissions.length ? reservedMissions.map((item) => (
-          <tbody key={item.id}>
+        reservedMissions.length ? reservedMissions.map((mission) => (
+          <tbody key={mission.mission_name}>
             <tr>
               <td>
-                {item.title}
+                {mission.mission_name}
               </td>
             </tr>
           </tbody>
