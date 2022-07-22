@@ -8,7 +8,7 @@ export default function MissionsListItem() {
   const { missions } = useSelector((state) => state.missions);
   const missionList = Object.keys(missions);
   useEffect(() => {
-    dispatch(fetchMissions());
+    if ((missions.length) === 0)dispatch(fetchMissions());
   }, []);
 
   return (
