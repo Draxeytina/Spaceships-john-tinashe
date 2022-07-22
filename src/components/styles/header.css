@@ -55,3 +55,7 @@ header {
   text-decoration: none;
   margin-left: 12px;
 }
+
+.nav-link.active {
+  text-decoration: underline;
+}
